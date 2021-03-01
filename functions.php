@@ -4,6 +4,21 @@ if ( ! function_exists( 'universal_theme_setup' ) ) :
     function universal_theme_setup() {
       // Добавление тега title
       add_theme_support( 'title-tag' );
+
+      // Добавление пользовательского лого
+      add_theme_support( 'custom-logo', [
+          'width'       => 190,
+          'flex-height' => true,
+          'header-text' => 'Universal',
+          'unlink-homepage-logo' => false, // WP 5.5
+] );
+      // Регистрайия меню
+	      register_nav_menus( [
+              'header_menu' => 'Меню в шапке',
+              'footer_menu' => 'Меню в подвале'
+	] );
+
+
     }
 endif;
 add_action( 'after_setup_theme', 'universal_theme_setup' );
