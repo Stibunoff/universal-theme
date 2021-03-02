@@ -7,22 +7,35 @@
     align-items: center
     justify-content: space-between
   &-menu
-     padding: 0
-     margin: 0
-     list-style: none
-     display: flex
-     align-items: center
+    margin: 0
+    padding: 0
+    list-style: none
+    display: flex
+    align-items: center
+    &-toggle
+      display: none
+.logo
+  display: flex
+  align-items: center
+  &-name
+    font-family: Roboto Slab, serif
+    color: #ffffff
+    font-size: 24px
+    margin-left: 10px
+.custom
+  &-logo
+    height: 40px
 .menu
-    &-item
-      a
-        text-decoration: none
-        color: #fff
-        margin-left: 15px
-        margin-right: 15px
+  &-item
+    a
+      text-decoration: none
+      color: #ffffff
+      margin-left: 15px
+      margin-right: 15px
 .search
   &-form
     position: relative
-    width: 270px
+    width: 25%
     height: 40px
     input
       position: absolute
@@ -34,6 +47,7 @@
       border-radius: 10px
       border: none
       padding: 10px 25px
+      color: #111
       &::placeholder
         color: #939699
     button
@@ -46,10 +60,5 @@
       background-repeat: no-repeat
       background-position: center
       background-color: transparent
-      border: none 
+      border: none
       cursor: pointer
-
-
-
-
-

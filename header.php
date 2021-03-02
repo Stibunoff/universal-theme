@@ -24,7 +24,6 @@
 	'container_class' => 'header-nav', 
 	'menu_class'      => 'header-menu', 
 	'echo'            => true,
-	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
       ] );
       ?>
       <?php get_search_form(); ?>
