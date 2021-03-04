@@ -92,7 +92,7 @@ if( $myposts ){
 
             $myposts = get_posts([ 
               'numberposts' => 4,
-              'category_name' => 'javascript, css, web-design, html',
+              'category_name' => 'articles',
             ]);
             // Проверяем, есть ли посты
             if( $myposts ){
