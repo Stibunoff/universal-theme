@@ -235,7 +235,13 @@ body {
   border-radius: 50%;
 }
 
-.hero .left .category-name {
+.hero .left .post-categories {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hero .left .post-categories a {
   color: #4592FF;
   text-transform: uppercase;
   font-weight: 900;
@@ -255,6 +261,7 @@ body {
 }
 
 .hero .left .post-text {
+  color: #ffffff;
   z-index: 2;
   position: relative;
 }
