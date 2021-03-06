@@ -144,8 +144,8 @@ if ( $query->have_posts() ) {
         <a href="<?php the_permalink()?>" class="article-grid-permalink">
         <span class="category-name"><?php $category = get_the_category(); echo $category [0]->name; ?>
       </span>
-        <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,50, '...') ?></h4>
-        <p class="article-grid-excerpt"><?php echo get_the_excerpt() ?></p>
+        <h4 class="article-grid-title"><?php echo get_the_title () ?></h4>
+        <p class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt( ), 0 ,90, '...') ?></p>
         <div class="article-grid-info">
          <div class="author">
            <?php $author_id = get_the_author_meta('ID');?>
@@ -174,17 +174,21 @@ if ( $query->have_posts() ) {
         </span>
         <span class="category-name"><?php $category = get_the_category(); echo $category [0]->name; ?>
       </span>
-        <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,50, '...') ?></h4>
+        <h4 class="article-grid-title"><?php the_title() ?></h4>
         <div class="article-grid-info">
          <div class="author">
            <?php $author_id = get_the_author_meta('ID');?>
           <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="author-avatar">
-          <span class="author-name"><strong><?php the_author() ?></strong></span>
-         </div>
-         <div class="comments">
-          <img src="<?php echo get_template_directory_uri( ) . '/assets/images/comment.svg' ?>" alt="icon:comment" class="icon comments-icon">
-          <span class="comments-counter"><?php comments_number( '0', '1', '%' ); ?></span>
-          </div>
+           <div class="author-info">
+               <span class="author-name"><strong><?php the_author() ?></strong></span>
+               <span class="date"><?php the_time('J F'); ?></span>
+                 <div class="comments">
+                <img src="<?php echo get_template_directory_uri( ) . '/assets/images/comment.svg' ?>" alt="icon:comment" class="icon comments-icon">
+                <span class="comments-counter"><?php comments_number( '0', '1', '%' ); ?></span>
+                </div>
+           </div>
+           <!-- /author-info -->
+         </div> 
         </div>
         </a>
         </li>
@@ -224,8 +228,7 @@ if ( $query->have_posts() ) {
 
 wp_reset_postdata(); // Сбрасываем $post
 ?>
-  
-      
+
 </ul>
 <!-- /.article-grid -->
 </div>
