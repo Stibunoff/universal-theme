@@ -125,6 +125,7 @@ global $post;
 $query = new WP_Query( [
   // Получаем 7  постов
 	'posts_per_page' => 7,
+  'tag'=> 'popular',
 ] );
 // Проверяем есть ли посты
 
