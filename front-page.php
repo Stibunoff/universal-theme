@@ -216,7 +216,7 @@ if ( $query->have_posts() ) {
       default: ?>
         <li class="article-grid-item article-grid-item-default">
         <a href="<?php the_permalink()?>" class="article-grid-permalink">
-        <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,50, '...') ?></h4>
+        <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,45, '...') ?></h4>
         <p class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,85, '...') ?></p>
         <span class="article-date"><?php the_time('j F Y'); ?></span>
         </a>
