@@ -26,6 +26,26 @@ if ( ! function_exists( 'universal_theme_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'universal_theme_setup' );
 
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function universal_example_widgets_init() {
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Sidebar', 'universal-example' ),
+			'id'            => 'sidebar-1',
+			'description'   => esc_html__( 'Add widgets here.', 'universal-example' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+}
+add_action( 'widgets_init', 'universal_example_widgets_init' );
+
 // Подключение стилей и скриптов
 function enqueue_universal_style() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
