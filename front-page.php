@@ -237,5 +237,6 @@ wp_reset_postdata(); // Сбрасываем $post
 
 </ul>
 <!-- /.article-grid -->
+<?php get_sidebar(); ?>
 </div>
 <!-- /container -->
