@@ -59,7 +59,7 @@ class Downloader_Widget extends WP_Widget {
 		parent::__construct(
 			'downloader_widget', // ID виджета, если не указать (оставить ''), то ID будет равен названию класса в нижнем регистре: downloader_widget
 			'Полезные файлы',
-			array( 'description' => 'Файлы для скачивания', 'classname' => 'downloader_widget', )
+			array( 'description' => 'Файлы для скачивания', 'classname' => 'widget-downloader', )
 		);
 
 		// скрипты/стили виджета, только если он активен
@@ -76,13 +76,21 @@ class Downloader_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function widget( $args, $instance ) {
-		$title = apply_filters( 'widget_title', $instance['title'] );
+		$title = $instance['title'];
+		$description = $instance['description'];
+		$link = $instance['link'];
 
 		echo $args['before_widget'];
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
-		echo __( 'Hello, World!', 'text_domain' );
+		if ( ! empty( $description ) ) {
+			echo '<p>' . $description . '</p>';
+		}
+		if ( ! empty( $link ) ) {
+			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
+			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/download.svg"> Скачать</a>';
+		}
 		echo $args['after_widget'];
 	}
 
@@ -132,7 +140,7 @@ class Downloader_Widget extends WP_Widget {
 	}
 
 	// скрипт виджета
-	function add_my_widget_scripts() {
+	function add_downloader_widget_scripts() {
 		// фильтр чтобы можно было отключить скрипты
 		if( ! apply_filters( 'show_my_widget_script', true, $this->id_base ) )
 			return;
@@ -143,7 +151,7 @@ class Downloader_Widget extends WP_Widget {
 	}
 
 	// стили виджета
-	function add_my_widget_style() {
+	function add_downloader_widget_style() {
 		// фильтр чтобы можно было отключить стили
 		if( ! apply_filters( 'show_my_widget_style', true, $this->id_base ) )
 			return;
@@ -157,11 +165,11 @@ class Downloader_Widget extends WP_Widget {
 } 
 // конец класса Downloader_Widget
 
-// регистрация Foo_Widget в WordPress
-function register_foo_widget() {
+// регистрация downloader_widget в WordPress
+function register_downloader_widget() {
 	register_widget( 'Downloader_Widget' );
 }
-add_action( 'widgets_init', 'register_foo_widget' );
+add_action( 'widgets_init', 'register_downloader_widget' );
 
 // Подключение стилей и скриптов
 function enqueue_universal_style() {

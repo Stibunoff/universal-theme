@@ -118,6 +118,7 @@ if( $myposts ){
 
 </ul>
 <!-- ./article-list -->
+<div class="main-grid">
 <ul class="article-grid">
   <?php		
 global $post;
@@ -237,6 +238,9 @@ wp_reset_postdata(); // Сбрасываем $post
 
 </ul>
 <!-- /.article-grid -->
+<!-- Подключаем сайдбар -->
 <?php get_sidebar(); ?>
+</div>
+<!-- /main-grid -->
 </div>
 <!-- /container -->
