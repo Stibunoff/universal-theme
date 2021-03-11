@@ -274,3 +274,58 @@ if ( $query->have_posts() ) {
 wp_reset_postdata(); // Сбрасываем $post
 ?>
 
+<div class="digest-wrapper">
+  <ul class="digest">
+       <?php
+                // Объявляем глобальную переменную
+            global $post;
+
+            $myposts = get_posts([ 
+              'numberposts' => 7,
+            ]);
+            // Проверяем, есть ли посты
+            if( $myposts ){
+              // Если есть, запускаем цикл
+              foreach( $myposts as $post ){
+                setup_postdata( $post );
+                ?>
+  <!-- Выводим записи -->
+  <li class="digest-item">
+      <a href="<?php the_permalink()?>" class="digest-item-permalink">
+        <img src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail' ) ?>" class="digest-thumb">
+      </a>
+      <div class="digest-info">
+        <button class="bookmark">
+          <img src="<?php echo get_template_directory_uri( ) . '/assets/images/bookmark.svg' ?>" alt="icon: bookmark" class="icon icon-bookmark">
+        </button>
+        <a href="#" class="category-link javascript"><?php $category = get_the_category(); echo $category [0]->name; ?></a>
+        <a href="#" class="digest-item-permalink">
+          <h3 class="digest-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,45, '...') ?></h3>
+        </a>
+        <p class="digest-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,400, '...') ?></p>
+        <div class="digest-footer">
+          <span class="digest-date"><?php the_time('j F'); ?></span>
+          <div class="comments digest-comments">
+            <img src="<?php echo get_template_directory_uri( ) . '/assets/images/comment-white.svg' ?>" alt="icon:comment" class="comments-icon">
+                <span class="comments-counter"><?php comments_number( '0', '1', '%' ); ?></span>
+          </div>
+          <div class="likes digest-likes">
+            <img src="<?php echo get_template_directory_uri( ) . '/assets/images/heart.svg' ?>" alt="icon: like" class="likes-icon">
+            <span class="likes-counter"><?php comments_number( '0', '1', '%' ); ?></span>
+          </div>
+        </div>
+        <!-- /.digest-footer -->
+      </div>
+      <!-- /.digest-info -->
+    </li>
+          		<?php 
+            }
+          } else {
+            ?> <p>Постов нет</p> <?php
+          }
+
+          wp_reset_postdata(); // Сбрасываем $post
+          ?>
+
+</ul> 
+</div>
