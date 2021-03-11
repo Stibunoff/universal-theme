@@ -127,6 +127,8 @@ $query = new WP_Query( [
   // Получаем 7  постов
 	'posts_per_page' => 7,
   'tag'=> 'popular',
+  'category_not_in'=> 23,
+
 ] );
 // Проверяем есть ли посты
 
@@ -244,3 +246,31 @@ wp_reset_postdata(); // Сбрасываем $post
 <!-- /main-grid -->
 </div>
 <!-- /container -->
+
+<?php		
+global $post;
+
+$query = new WP_Query( [
+	'posts_per_page' => 1,
+  'category_name' => 'investigation',
+] );
+
+if ( $query->have_posts() ) {
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		?>
+		<section class="investigation" style="background: linear-gradient(0deg, rgba(64, 48, 61, 0.45), rgba(64, 48, 61, 0.45)), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center">
+  <div class="container">
+    <h2 class="investigation-title"><?php the_title();?></h2>
+    <a href="<?php echo get_the_permalink(); ?>" class="more">Читать статью</a>
+  </div>
+</section>
+		<?php 
+	}
+} else {
+	// Постов не найдено
+}
+
+wp_reset_postdata(); // Сбрасываем $post
+?>
+
