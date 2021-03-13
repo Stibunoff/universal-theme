@@ -215,19 +215,22 @@ class Social_Widget extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 		$title = $instance['title'];
-		$description = $instance['description'];
 		$link = $instance['link'];
 
 		echo $args['before_widget'];
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
-		if ( ! empty( $description ) ) {
-			echo '<p>' . $description . '</p>';
-		}
 		if ( ! empty( $link ) ) {
 			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
-			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/download.svg"> Скачать</a>';
+			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/twitter.svg"></a>';
+			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/youtube.svg"></a>';
+			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/facebook.svg"></a>';
+			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/insta.svg"></a>';
+			
 		}
 		echo $args['after_widget'];
 	}
@@ -248,10 +251,18 @@ class Social_Widget extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
     <p>
-			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Описание:' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'description' ); ?>" name="<?php echo $this->get_field_name( 'description' ); ?>" type="text" value="<?php echo esc_attr( $description ); ?>">
+			<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Ссылка на файл:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>">
 		</p>
-    <p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Ссылка на файл:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Ссылка на файл:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>">
+		</p>
+		<p>
 			<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Ссылка на файл:' ); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo esc_attr( $link ); ?>">
 		</p>
@@ -271,8 +282,8 @@ class Social_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-    $instance['description'] = ( ! empty( $new_instance['description'] ) ) ? strip_tags( $new_instance['description'] ) : '';
     $instance['link'] = ( ! empty( $new_instance['link'] ) ) ? strip_tags( $new_instance['link'] ) : '';
+	
 
 		return $instance;
 	}
