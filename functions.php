@@ -497,3 +497,4 @@ if ( function_exists( 'add_image_size' ) ) {
 	add_image_size( 'homepage-thumb', 65, 65, true ); // Кадрирование изображения
   add_image_size( 'article-thumb', 336, 195, true ); // Кадрирование изображения
 }
+
