@@ -209,12 +209,15 @@ if ( $query->have_posts() ) {
                <span class="date"><?php the_time('j F'); ?></span>
                  <div class="comments">
                  <svg width="19" height="15" fill="#fff" class="icon comments-icon">
-                   <use xlink:href="<?php echo get_template_directory_uri()?>/assetsimages/sprite.svg#comment"></use>
+                   <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#comment"></use>
                  </svg>
                 <span class="comments-counter"><?php comments_number( '0', '1', '%' ); ?></span>
                  </div>
                   <div class="likes">
-                <img src="<?php echo get_template_directory_uri( ) . '/assets/images/heart.svg' ?>" alt="icon:likes" class="icon likes-icon">
+                <div class="likes digest-likes">
+               <svg width="19" height="15" class="icon comments-icon">
+               <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#heart"></use>
+           </svg>alt="icon:likes" class="icon likes-icon">
                 <span class="likes-counter"><?php comments_number( '0', '1', '%' ); ?></span>
                   </div>
            </div>
@@ -314,7 +317,15 @@ wp_reset_postdata(); // Сбрасываем $post
   <!-- Выводим записи -->
   <li class="digest-item">
       <a href="<?php the_permalink()?>" class="digest-item-permalink">
-        <img src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail' ) ?>" class="digest-thumb">
+     
+        <img src="<?php 
+         if( has_post_thumbnail() ) {
+          echo get_the_post_thumbnail_url( null, 'thumbnail' );
+        }
+        else {
+          echo get_template_directory_uri().'/assets/images/img-default.png" />';
+        }
+         ?>" class="digest-thumb">
       </a>
       <div class="digest-info">
         <button class="bookmark">
@@ -324,17 +335,19 @@ wp_reset_postdata(); // Сбрасываем $post
         <a href="#" class="digest-item-permalink">
           <h3 class="digest-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,100, '...') ?></h3>
         </a>
-        <p class="digest-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,400, '...') ?></p>
+        <p class="digest-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,300, '...') ?></p>
         <div class="digest-footer">
           <span class="digest-date"><?php the_time('j F'); ?></span>
           <div class="comments digest-comments">
              <svg width="19" height="15" class="icon comments-icon">
-              <use xlink:href="<?php echo get_template_directory_uri()?>/assetsimages/sprite.svg#comment"></use>
+              <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#comment"></use>
            </svg>
                 <span class="comments-counter"><?php comments_number( '0', '1', '%' ); ?></span>
           </div>
           <div class="likes digest-likes">
-            <img src="<?php echo get_template_directory_uri( ) . '/assets/images/heart.svg' ?>" alt="icon: like" class="likes-icon">
+             <svg width="19" height="15" class="icon comments-icon">
+              <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#heart"></use>
+           </svg>
             <span class="likes-counter"><?php comments_number( '0', '1', '%' ); ?></span>
           </div>
         </div>
@@ -416,7 +429,7 @@ wp_reset_postdata(); // Сбрасываем $post
                 <h3 class="photo-report-title"><?php the_title() ?></h3>
                 <a href="<?php echo get_the_permalink()?>" class="button photo-report-button">
                   <svg width="19" height="15" class="icon photo-report-icon">
-                    <use xlink:href="<?php echo get_template_directory_uri()?>/assetsimages/sprite.svg#images"></use>
+                    <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#images"></use>
                   </svg>
                   Смотреть фото
                   <span class="photo-report-counter">3</span>

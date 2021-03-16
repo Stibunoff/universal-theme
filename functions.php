@@ -222,14 +222,17 @@ class Social_Widget extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 		if ( ! empty( $link ) ) {
-			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+
+			
+			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/twitter.svg"></a>';
-			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/youtube.svg"></a>';
-			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/facebook.svg"></a>';
-			echo '<a download target="_blank" class="widget-link" href="' . $link . '"> 
+			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/insta.svg"></a>';
+			
 			
 		}
 		echo $args['after_widget'];
@@ -241,7 +244,7 @@ class Social_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function form( $instance ) {
-		$title = @ $instance['title'] ?: 'Полезные файлы';
+		$title = @ $instance['title'] ?: 'Социальные сети';
     $description = @ $instance['description'] ?: 'Описание';
     $link = @ $instance['link'] ?: 'https://yandex.ru/';
 
