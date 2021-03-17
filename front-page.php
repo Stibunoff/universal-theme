@@ -299,6 +299,7 @@ if ( $query->have_posts() ) {
 wp_reset_postdata(); // Сбрасываем $post
 ?>
 <div class="container">
+<div class="digest-grid">
 <div class="digest-wrapper">
   <ul class="digest">
        <?php
@@ -370,6 +371,8 @@ wp_reset_postdata(); // Сбрасываем $post
 <!-- ./digest-wrapper -->
 <!-- Подключаем нижний сайдбар -->
 <?php get_sidebar('home-bottom'); ?>
+</div>
+<!-- /digest-grid -->
 </div>
 <!-- /container -->
 <div class="special">

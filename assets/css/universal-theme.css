@@ -800,7 +800,6 @@ body {
   font-family: "Lato Black", sans-serif;
   margin: 0;
   text-transform: uppercase;
-  text-align: center;
 }
 
 .widget-downloader {
@@ -965,6 +964,15 @@ body {
   border-radius: 5px;
 }
 
+.social-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .investigation {
   padding: 50px 0 55px;
   text-align: center;
@@ -1090,6 +1098,15 @@ body {
 
 .bookmark svg {
   fill: #BCBFC2;
+}
+
+.digest-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .special {

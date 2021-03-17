@@ -159,7 +159,7 @@ class Downloader_Widget extends WP_Widget {
 
 		$theme_url = get_stylesheet_directory_uri();
 
-		wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
+		// wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
 	}
 
 	// стили виджета
@@ -224,14 +224,14 @@ class Social_Widget extends WP_Widget {
 		if ( ! empty( $link ) ) {
 
 			
-			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
+			echo '<div class="social-grid> <a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/twitter.svg"></a>';
 			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/youtube.svg"></a>';
 			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
 			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/facebook.svg"></a>';
 			echo '<a target="_blank" class="widget-link" href="' . $link . '"> 
-			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/insta.svg"></a>';
+			<img class="widget-link-icon" src="'.get_template_directory_uri() . '/assets/images/insta.svg"></a> </div>';
 			
 			
 		}
@@ -299,7 +299,7 @@ class Social_Widget extends WP_Widget {
 
 		$theme_url = get_stylesheet_directory_uri();
 
-		wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
+		// wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
 	}
 
 	// стили виджета
@@ -435,7 +435,7 @@ echo '</div>';
 
 		$theme_url = get_stylesheet_directory_uri();
 
-		wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
+		// wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
 	}
 
 	// стили виджета
