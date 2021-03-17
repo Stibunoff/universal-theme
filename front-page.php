@@ -336,7 +336,7 @@ wp_reset_postdata(); // Сбрасываем $post
         <a href="#" class="digest-item-permalink">
           <h3 class="digest-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,100, '...') ?></h3>
         </a>
-        <p class="digest-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,300, '...') ?></p>
+        <p class="digest-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,170, '...') ?></p>
         <div class="digest-footer">
           <span class="digest-date"><?php the_time('j F'); ?></span>
           <div class="comments digest-comments">
