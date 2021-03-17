@@ -308,6 +308,8 @@ wp_reset_postdata(); // Сбрасываем $post
 
             $myposts = get_posts([ 
               'numberposts' => 7,
+              'category_name' => 'javascript, css, web-design, html',
+
             ]);
             // Проверяем, есть ли посты
             if( $myposts ){
