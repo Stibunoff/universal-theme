@@ -500,7 +500,7 @@ wp_reset_postdata(); // Сбрасываем $post
 
           $query = new WP_Query( [
             'posts_per_page' => 2,
-            'category_name' => 'javascript, css, web-design, html',
+            
           ] );
 
           if ( $query->have_posts() ) {
