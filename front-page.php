@@ -467,25 +467,57 @@ wp_reset_postdata(); // Сбрасываем $post
       
       <div class="other">
         <div class="career-post">
-          <a href="#" class="category-link">Карьера</a>
-          <h3 class="career-post-title">Вопросы на собеседовании для джуна</h3>
+          <?php		
+          global $post;
+
+          $query = new WP_Query( [
+            'posts_per_page' => 1,
+            'category_name' => 'career',
+          ] );
+
+          if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+              $query->the_post();
+          ?>
+          <a href="<?php echo get_the_permalink()?>" class="category-link"></a>
+          <h3 class="career-post-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,50, '...') ?></h3>
           <p class="career-post-excerpt">
-            Каверзные и не очень вопросы, которых боятся новички, когда идут на собеседование
+            <?php echo mb_strimwidth(get_the_excerpt( ), 0 ,90, '...') ?>
           </p>
-          <a href="#" class="more">Читать далее</a>
+          <a href="<?php echo get_the_permalink(); ?>" class="more">Читать далее</a>
+          </section>
+		<?php 
+        }
+      } else {
+        // Постов не найдено
+      }
+      ?>
         </div>
         <!-- /.career-post -->
         <div class="other-posts">
+        <?php		
+          global $post;
+
+          $query = new WP_Query( [
+            'posts_per_page' => 2,
+            'category_name' => 'javascript, css, web-design, html',
+          ] );
+
+          if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+              $query->the_post();
+          ?>
           <a href="#" class="other-post other-post-default">
-            <h4 class="other-post-title">Самые крутые функции в...</h4>
-            <p class="other-post-excerpt">Тут полезный контент</p>
-            <span class="other-post-date">3 декабря 2020</span>
+            <h4 class="other-post-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,25, '...') ?></h4>
+            <p class="other-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 ,70, '...') ?></p>
+            <span class="other-post-date"><?php the_time('j F'); ?></span>
           </a>
-          <a href="#" class="other-post other-post-default">
-            <h4 class="other-post-title">Новые возможности язык...</h4>
-            <p class="other-post-excerpt">Тут про новые фичи языка CSS</p>
-            <span class="other-post-date">3 декабря 2020</span>
-          </a>
+          <?php 
+        }
+      } else {
+        // Постов не найдено
+      }
+      ?>
         </div>
         <!-- /.other-posts -->
       </div>
