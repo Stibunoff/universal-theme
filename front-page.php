@@ -123,7 +123,12 @@ if( $myposts ){
     <a class="article-permalink" href="<?php echo get_the_permalink(); ?>">
       <h4 class="article-title"><?php echo mb_strimwidth(get_the_title( ), 0 ,50, '...') ?></h4>
     </a>
-    <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail' ) ?>" alt="">
+    <img width="65" height="65" src="<?php if( has_post_thumbnail() ) {
+          echo get_the_post_thumbnail_url( null, 'thumb' );
+        }
+        else {
+          echo get_template_directory_uri().'/assets/images/img-default.png';
+        } ?>" alt="">
    </li>
           		<?php 
             }
@@ -189,7 +194,12 @@ if ( $query->have_posts() ) {
         // Выводим второй пост
         case '2': ?>
         <li class="article-grid-item article-grid-item-2">
-        <img src="<?php echo get_the_post_thumbnail_url()?>" alt="" class="article-grid-thumb">
+        <img src="<?php  if( has_post_thumbnail() ) {
+              echo get_the_post_thumbnail_url( null, 'thumbnail' );
+            }
+            else {
+          echo get_template_directory_uri().'/assets/images/img-default.png';
+        }?>" alt="" class="article-grid-thumb">
         <a href="<?php the_permalink()?>" class="article-grid-permalink">
         <span class="tag">
           <?php $posttags = get_the_tags();
@@ -233,7 +243,12 @@ if ( $query->have_posts() ) {
         case '3': ?>
         <li class="article-grid-item article-grid-item-3">
         <a href="<?php the_permalink()?>" class="article-grid-permalink">
-        <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="" class="article-thumb">
+        <img width="65" height="65" src="<?php  if( has_post_thumbnail() ) {
+          echo get_the_post_thumbnail_url( null, 'thumbnail' );
+        }
+        else {
+          echo get_template_directory_uri().'/assets/images/img-default.png';
+        } ?>" alt="" class="article-thumb">
         <h4 class="article-grid-title"><?php echo the_title() ?></h4>
         </a>
         </li>
@@ -319,14 +334,16 @@ wp_reset_postdata(); // Сбрасываем $post
                 ?>
   <!-- Выводим записи -->
   <li class="digest-item">
-      <a href="<?php the_permalink()?>" class="digest-item-permalink">
-     
+      <a href="<?php echo get_the_permalink()?>" class="digest-item-permalink">
+        <?php
+
+        ?>
         <img src="<?php 
          if( has_post_thumbnail() ) {
           echo get_the_post_thumbnail_url( null, 'thumbnail' );
         }
         else {
-          echo get_template_directory_uri().'/assets/images/img-default.png" />';
+          echo get_template_directory_uri().'/assets/images/img-default.png';
         }
          ?>" class="digest-thumb">
       </a>
@@ -348,7 +365,7 @@ wp_reset_postdata(); // Сбрасываем $post
                 <span class="comments-counter"><?php comments_number( '0', '1', '%' ); ?></span>
           </div>
           <div class="likes digest-likes">
-             <svg width="19" height="15" class="icon comments-icon">
+             <svg width="19" height="15" fill="#BCBFC2" class="icon comments-icon">
               <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#heart"></use>
            </svg>
             <span class="likes-counter"><?php comments_number( '0', '1', '%' ); ?></span>
@@ -397,34 +414,30 @@ wp_reset_postdata(); // Сбрасываем $post
               <div class="swiper-container photo-report-slider">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                  <!-- Slides -->
-                  <div class="swiper-slide">
-                    <img src="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="">
-                  </div>
+                <!-- Slides -->
+                <?php $images = get_attached_media ('image');
+                   foreach ($images as $image)    {
+                     echo '<div class="swiper-slide">img src="';
+                     print_r($image ->guid);
+                     echo '"></div>';
+                    }
+                   ?>
                 </div>
                 <div class="swiper-pagination"></div>
               </div>
-              <div class="photo-report-content">
-              <?php
+            <div class="photo-report-content">
+            <?php
                   foreach (get_the_category() as $category)    {
                   printf(
-                  '<a href="%s" class="category-link %s">%s</a>',
+                  '<a href="%s" class="category-link">%s</a>',
                   esc_url( get_category_link ( $category )),
-                  esc_html( $category -> slug),
                   esc_html( $category -> name ),
-                  );
-                  }
-                  ?>
-                  <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-thumb">
+                 );
+                }
+            ?>
                       <?php $author_id = get_the_author_meta('ID');?>
                       <a href="<?php echo get_author_posts_url($author_id) ?>" class="author">
-                        <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="avatar">
+                        <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="author-avatar">
                         <div class="author-bio">
                           <span class="author-name"><?php the_author(); ?></span>
                           <span class="author-rank">Должность</span>
@@ -437,12 +450,12 @@ wp_reset_postdata(); // Сбрасываем $post
                     <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#images"></use>
                   </svg>
                   Смотреть фото
-                  <span class="photo-report-counter">3</span>
+                  <span class="photo-report-counter"><?php count($images)?></span>
                 </a>
-              </div>
-              <!-- /.photo-report-content -->
             </div>
-            <!-- /.photo-report -->
+              <!-- /photo-report-content -->
+          </div>
+         <!-- /.photo-report -->
         <?php 
           }
         } else {
@@ -483,3 +496,4 @@ wp_reset_postdata(); // Сбрасываем $post
   <!-- /.container -->
 </div>
 <!-- /.special -->
+<?php wp_footer()?>
