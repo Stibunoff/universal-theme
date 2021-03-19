@@ -2,7 +2,7 @@
   <div class="container">
 
 <div  class="footer-menu-bar">
-</div>>
+</div>
 <!-- /footer-menu-bar -->
 <div class="footer-info">
   <?php 
